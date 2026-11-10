@@ -160,7 +160,7 @@ export default function Page() {
 
       <section className="contact-section" id="contact">
         <div className="section contact-grid">
-          <div><p className="eyebrow">04 / Start a conversation</p><h2>Have an idea?<br /><em>Let&apos;s make it real.</em></h2><p className="contact-copy">Whether you&apos;re exploring a collaboration, a product idea, or just want to say hello — I&apos;d love to hear from you.</p><div className="contact-details"><a href="mailto:gokulnot1@gmail.com"><Mail size={17} />gokulnot1@gmail.com</a><span><MapPin size={17} />Tindivanam, India</span></div></div>
+          <div><p className="eyebrow">Start a conversation</p><h2>Have an idea?<br /><em>Let&apos;s make it real.</em></h2><p className="contact-copy">Whether you&apos;re exploring a collaboration, a product idea, or just want to say hello — I&apos;d love to hear from you.</p><div className="contact-details"><a href="mailto:gokulnot1@gmail.com"><Mail size={17} />gokulnot1@gmail.com</a><span><MapPin size={17} />Tindivanam, India</span></div></div>
           <form className="contact-form" onSubmit={handleSubmit} aria-busy={submitting}>
             <label>Your name<input required name="name" placeholder="Jane Smith" /></label>
             <label>Phone number<input required name="phone" type="tel" placeholder="+91 98765 43210" /></label>
