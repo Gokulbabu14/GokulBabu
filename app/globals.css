@@ -16,7 +16,7 @@ a { color: inherit; text-decoration: none; }
 .nav-links a:hover, .socials a:hover { color: #4f9b25; }
 .header-cta, .submit-button { display: inline-flex; align-items: center; gap: 9px; background: var(--ink); color: var(--paper); border-radius: 100px; padding: 12px 17px; font-size: 12px; font-weight: 700; border: 0; cursor: pointer; }
 .menu-button { display: none; background: none; border: 0; }
-.hero { min-height: 665px; display: grid; grid-template-columns: 1fr .92fr; align-items: center; position: relative; padding-top: 50px; padding-bottom: 70px; }
+.hero { min-height: 665px; display: grid; grid-template-columns: 1fr .92fr; align-items: center; position: relative; padding-top: 50px; padding-bottom: 0; }
 .hero-copy { position: relative; z-index: 2; align-self: center; }
 .eyebrow { margin: 0 0 24px; text-transform: uppercase; letter-spacing: .13em; font-size: 10px; font-weight: 800; color: var(--muted); }
 .status-dot { display: inline-block; width: 7px; height: 7px; background: #58b32b; border-radius: 50%; margin-right: 7px; vertical-align: 1px; }
@@ -26,6 +26,9 @@ h1 { font-size: clamp(76px, 11vw, 154px); line-height: .83; letter-spacing: -.09
 .circle-link { display: flex; align-items: center; justify-content: center; width: 62px; height: 62px; border: 1px solid var(--ink); border-radius: 50%; margin-top: 38px; transition: .2s; }
 .circle-link:hover { background: var(--green); transform: rotate(45deg); }
 .hero-portrait-wrap { position: relative; height: 560px; display: flex; justify-content: center; align-items: flex-end; overflow: visible; isolation: isolate; }
+@media (min-width: 701px) {
+  .hero-portrait-wrap { align-self: end; }
+}
 .hero-portrait-wrap::before { content: ''; position: absolute; width: 430px; height: 430px; border-radius: 50%; background: radial-gradient(circle at 50% 32%, rgba(167,243,107,.24), rgba(52,84,43,.12) 42%, transparent 70%); filter: blur(10px); }
 .hero-portrait { position: relative; z-index: 1; height: 540px; width: auto; object-fit: contain; filter: contrast(1.06) saturate(1.1) brightness(.98) drop-shadow(0 24px 24px rgba(0,0,0,.35)); }
 .portrait-note { position: absolute; z-index: 2; right: 4%; bottom: 104px; font-size: 11px; line-height: 1.45; text-transform: uppercase; letter-spacing: .08em; }
@@ -71,7 +74,9 @@ h2 { font-size: clamp(42px, 6vw, 74px); line-height: .95; letter-spacing: -.075e
 .contact-form input, .contact-form textarea { width: 100%; border: 0; border-bottom: 1px solid #9aa697; background: transparent; padding: 9px 0; outline: none; font: inherit; font-size: 14px; resize: vertical; color: var(--ink); }
 .contact-form input:focus, .contact-form textarea:focus { border-color: #4f9b25; }
 .submit-button { justify-content: center; justify-self: start; margin-top: 6px; background: #4f9b25; color: #fff; }
+.submit-button:disabled { opacity: .7; cursor: wait; }
 .form-success { color: #377b19; font-size: 12px; margin: 0; }
+.form-error { color: #f28b82; font-size: 12px; margin: 0; }
 .footer { display: flex; justify-content: space-between; align-items: center; min-height: 95px; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
 .socials { display: flex; gap: 16px; color: var(--ink); }
 .brand-logo { display: block; width: 22px; height: 22px; object-fit: contain; transition: transform .2s ease, opacity .2s ease; }
@@ -84,7 +89,7 @@ h2 { font-size: clamp(42px, 6vw, 74px); line-height: .95; letter-spacing: -.075e
   .header-cta { display: none; }
   .menu-button { display: block; }
   .hero { display: flex; flex-direction: column; align-items: stretch; padding-top: 65px; min-height: auto; }
-  h1 { font-size: 86px; }
+  h1 { font-size: clamp(68px, 17vw, 86px); line-height: .92; letter-spacing: -.055em; }
   .hero-portrait-wrap { height: 410px; margin-top: 18px; }
   .hero-portrait { height: 390px; }
   .portrait-note { right: 0; bottom: 62px; }
@@ -93,8 +98,8 @@ h2 { font-size: clamp(42px, 6vw, 74px); line-height: .95; letter-spacing: -.075e
   .quote-band p { text-align: left; }
   .section { padding-top: 78px; padding-bottom: 78px; }
   .project-list { margin-top: 45px; }
-  .project-row { grid-template-columns: 32px 1fr; gap: 12px; }
-  .project-meta { grid-column: 2; margin-top: 5px; }
+  .project-row { grid-template-columns: 1fr; gap: 12px; }
+  .project-meta { grid-column: 1; margin-top: 5px; }
   .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 30px; }
   .about-copy { padding-top: 0; }
   .achievement-grid { grid-template-columns: 1fr; }

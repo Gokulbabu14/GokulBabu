@@ -58,13 +58,41 @@ const achievements = [
   },
 ]
 
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xyewgkjd'
+
 export default function Page() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [sent, setSent] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
+  const [submissionError, setSubmissionError] = useState('')
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setSent(true)
+    setSent(false)
+    setSubmissionError('')
+
+    const form = event.currentTarget
+    setSubmitting(true)
+
+    try {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      })
+
+      if (!response.ok) {
+        setSubmissionError('Your message could not be sent. Please try again or email me directly.')
+        return
+      }
+
+      form.reset()
+      setSent(true)
+    } catch {
+      setSubmissionError('Could not connect to send your message. Check your connection and try again.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
@@ -133,12 +161,13 @@ export default function Page() {
       <section className="contact-section" id="contact">
         <div className="section contact-grid">
           <div><p className="eyebrow">04 / Start a conversation</p><h2>Have an idea?<br /><em>Let&apos;s make it real.</em></h2><p className="contact-copy">Whether you&apos;re exploring a collaboration, a product idea, or just want to say hello — I&apos;d love to hear from you.</p><div className="contact-details"><a href="mailto:gokulnot1@gmail.com"><Mail size={17} />gokulnot1@gmail.com</a><span><MapPin size={17} />Tindivanam, India</span></div></div>
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" onSubmit={handleSubmit} aria-busy={submitting}>
             <label>Your name<input required name="name" placeholder="Jane Smith" /></label>
             <label>Phone number<input required name="phone" type="tel" placeholder="+91 98765 43210" /></label>
             <label>Your message<textarea required name="message" rows={4} placeholder="Tell me a little about your idea..." /></label>
-            <button className="submit-button" type="submit">{sent ? <>Message ready <Check size={17} /></> : <>Send message <ArrowUpRight size={17} /></>}</button>
+            <button className="submit-button" type="submit" disabled={submitting}>{submitting ? 'Sending...' : sent ? <>Message sent <Check size={17} /></> : <>Send message <ArrowUpRight size={17} /></>}</button>
             {sent && <p className="form-success" role="status">Thanks — I&apos;ll get back to you soon.</p>}
+            {submissionError && <p className="form-error" role="alert">{submissionError}</p>}
           </form>
         </div>
       </section>

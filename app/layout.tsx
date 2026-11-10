@@ -5,7 +5,6 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Gokul Babu — Entrepreneur & Builder',
   description: 'The portfolio of Gokul Babu, an entrepreneur building thoughtful digital products with AI and data.',
-  generator: 'v0.app',
   icons: {
     icon: [
       {
